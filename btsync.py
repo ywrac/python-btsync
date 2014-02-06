@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import httplib
 import base64
 import urllib
@@ -15,7 +17,7 @@ class BTSync(object):
 
     """
 
-    def __init__(self, host='localhost', port='8888',
+    def __init__(self, host='localhost', port='14888',
                  user='admin', pswd='password'):
         """
         Parameters
@@ -65,7 +67,7 @@ class BTSync(object):
             params['secret'] = secret
         return self._request(params)
 
-    def add_folder(self, path, secret=None):
+    def add_folder(self, path, secret=None, selective_sync=None):
         """
         Adds a folder to Sync. If a secret is not specified, it will be
         generated automatically. The folder will have to pre-exist on the disk
@@ -82,7 +84,9 @@ class BTSync(object):
         selective_sync (optional) - specify sync mode, selective - 1, all files
                                     (default) - 0
         """
-        params = {'method': 'add_folder', 'dir': path}
+        params = {'method': 'add_folder', 'secret': self.get_secrets()['read_write'], 'dir': path, 'selective_sync': '1'}
+        if selective_sync is not None:
+            params['selective_sync'] = selective_sync
         if secret is not None:
             params['secret'] = secret
         return self._request(params)
@@ -132,11 +136,15 @@ class BTSync(object):
         secret (required) - must specify folder secret
         path (optional) - specify path to a subfolder of the sync folder.
         """
-        params = {'method': 'get_files'}
+        params = {'method': 'get_files', 'secret': secret}
         if path is not None:
             params['path'] = path
         return self._request(params)
-
+    
+    def set_file_prefs(self, secret, path, download):
+        params = { 'secret': secret, 'path':path, 'download': download}
+        return self._request(params)
+    
     def get_secrets(self, secret=None):
         """
         Generates read-write, read-only and encryption read-only secrets. If
@@ -161,11 +169,37 @@ class BTSync(object):
         type (optional) - if type=encrypted, generate secret with support of
                             encrypted peer
         """
-        params = {'method': 'get_secrets'}
+        params = {'method': 'get_secrets', 'type':'encryption'}
         if secret is not None:
             params['secret'] = secret
         return self._request(params)
-
+    
+    def get_folder_host(self):
+        params = {'method': 'get_folder_host'}
+        if secret is not None:
+            params['secret'] = secret
+        return self._request(params)
+        
+    def get_prefs(self):
+        params = {'method':'get_prefs'}
+        return self._request(params)
+    
+    def get_os(self):
+        params = {'method':'get_os'}
+        return self._request(params)
+    
+    def get_version(self):
+        params = {'method':'get_version'}
+        return self._request(params)
+    
+    def get_speed(self):
+        params = {'method':'get_speed'}
+        return self._request(params)
+    
+    def shutdown(self):
+        params = {'method':'shutdown'}
+        return self._request(params)
+    
     def _request(self, params):
         params = urllib.urlencode(params)
         self.conn.request('GET', '/api?' + params, '', self.headers)
@@ -174,3 +208,11 @@ class BTSync(object):
             return json.load(resp)
         else:
             return None
+     
+if __name__ == '__main__':
+    btsync = BTSync()
+    print btsync.get_os()
+    print btsync.get_version()
+    print btsync.get_speed()
+    print btsync.get_folders()
+    print btsync.get_prefs()
