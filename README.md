@@ -1,5 +1,7 @@
-python-btsync
-=============
+# python-btsync
+
+BTSync APIをPythonから利用することができます。
+APIを利用するためにはBitTorrent社からAPI Keyを取得する必要があります。
 
 The `BTSync` class is a light wrapper around the [Bittorrent Sync API][1].
 For now, this code assumes a btsync instance is running with a working API key.
@@ -7,19 +9,18 @@ For now, this code assumes a btsync instance is running with a working API key.
 
 [1]: http://www.bittorrent.com/sync/developers/api
 
-Installation
-------------
+## インストール　Installation
 ```bash
 $ git clone https://github.com/jminardi/python-btsync.git
 $ cd python-btsync
 $ python setup.py install
 ```
+_最新版の[BitTorrent Sync][0]が必要です。
 _You will also need a recent version of the [Bittorrent Sync Application][0]_
 [0]: http://www.bittorrent.com/sync/downloads
 
 
-Basic Use
----------
+## 使い方　Basic Use
 
 ```python
 >>> # this code assumes a btsync instance is running
@@ -35,8 +36,10 @@ Basic Use
   u'type': u'read_write'}]
 ```
 
-Implemented Methods
--------------------
+## メソッド　Implemented Methods
+すべてのメソッドが実装されているわけだはありません。
+しかし`request()`メソッドを介して任意のメソッドを実行することができます。
+
 At this time, not all API calls are implemented. However, you can still 
 make any API call manually using the `request()` method like so:
 
@@ -44,11 +47,12 @@ make any API call manually using the `request()` method like so:
 btsync.request({'method': 'get_folder_peers', 'secret': '<yoursecret>'})
 ```
 
+### 実装済みのメソッド一覧
 * [x] Get folders
 * [x] Add folder
 * [x] Remove folder
 * [x] Get files
-* [ ] Set file preferences
+* [x] Set file preferences
 * [ ] Get folder peers
 * [x] Get secrets
 * [ ] Get folder preferences
@@ -57,24 +61,32 @@ btsync.request({'method': 'get_folder_peers', 'secret': '<yoursecret>'})
 * [ ] Set folder hosts
 * [ ] Get preferences
 * [ ] Set preferences
-* [ ] Get OS name
-* [ ] Get version
-* [ ] Get speed
-* [ ] Shutdown
+* [x] Get OS name
+* [x] Get version
+* [x] Get speed
+* [x] Shutdown
 
 
-Notes
------
+## Notes
+
+残念ながらBTSyncはプロプライエタリなソフトウェアです。
+そのためAPIを利用するためには、BitTorrent社の許可を必要とします。
+具体的にはAPIキーというものを以下のURLから取得する必要があります。
 
 To use the API you will need to apply for a key. You can find out
 how to do that, and learn more about the btsync API here:
 
 <http://www.bittorrent.com/sync/developers/>
-        
+
+APIキーを取得したら、設定ファイルにキーを入力してください。
+
 Once you receive your key, you need to enter it into the config file.
 See `config.json` for a sample config file.
 
+BTSyncのバイナリに--configフラグをつけ、configファイルを指定して実行すればAPIが有効になります。
 Then quit BTSync if it is running, and start it from the command line with the --config flag:
+
+Macの実行例を以下に示します。
 
 ```bash
 $ /Applications/BitTorrent\ Sync.app/Contents/MacOS/BitTorrent\ Sync --config path/to/config.json
