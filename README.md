@@ -15,8 +15,8 @@ $ git clone https://github.com/jminardi/python-btsync.git
 $ cd python-btsync
 $ python setup.py install
 ```
-_最新版の[BitTorrent Sync][0]が必要です。
-_You will also need a recent version of the [Bittorrent Sync Application][0]_
+*最新版の[BitTorrent Sync][0]が必要です。*
+*You will also need a recent version of the [Bittorrent Sync Application][0]*
 [0]: http://www.bittorrent.com/sync/downloads
 
 
@@ -83,7 +83,8 @@ APIキーを取得したら、設定ファイルにキーを入力してくだ�
 Once you receive your key, you need to enter it into the config file.
 See `config.json` for a sample config file.
 
-BTSyncのバイナリに--configフラグをつけ、configファイルを指定して実行すればAPIが有効になります。
+--configフラグをつけてBTSyncのバイナリを実行すればAPIが有効になります。
+
 Then quit BTSync if it is running, and start it from the command line with the --config flag:
 
 Macの実行例を以下に示します。
