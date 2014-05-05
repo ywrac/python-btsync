@@ -9,4 +9,7 @@ pswd='password'
 
 b=BTSync(host,port,user,pswd)
 
-print b.get_registerd_secrets()
+secrets=b.get_registerd_secrets()
+
+for secret in secrets:
+    print secret
