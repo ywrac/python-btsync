@@ -208,7 +208,19 @@ class BTSync(object):
             return json.load(resp)
         else:
             return None
-     
+
+
+    def get_encryption(self,secret):
+        try:
+            return self.get_secrets(secret)['encryption']
+        except KeyError:
+            print "oops, your secret is not compatible with encryption"
+
+    def get_registerd_secrets(self):
+        folders=self.get_folders()
+        return [ folders[x]['secret'] for x in range(0,len(folders)) ]
+
+
 if __name__ == '__main__':
     btsync = BTSync()
     print btsync.get_os()
@@ -216,3 +228,4 @@ if __name__ == '__main__':
     print btsync.get_speed()
     print btsync.get_folders()
     print btsync.get_prefs()
+    print btsync.get_registerd_secrets()

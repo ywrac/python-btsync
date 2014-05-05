@@ -16,11 +16,4 @@ pswd='password'
 
 b=BTSync(host,port,user,pswd)
 
-secrets=b.get_secrets(secret)
-
-try:
-    encryption=secrets['encryption']
-    print encryption
-except KeyError:
-    print secrets
-
+print b.get_encryption(secret)
