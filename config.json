@@ -2,7 +2,7 @@
   "use_gui" : false,
   "webui" :
   {
-    "listen" : "127.0.0.1:8888",
+    "listen" : "127.0.0.1:14888",
     "login" : "admin",
     "password" : "password",
     "api_key" : "<YOUR-KEY-HERE>"

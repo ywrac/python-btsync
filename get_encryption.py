@@ -3,16 +3,16 @@
 import sys
 from btsync import BTSync
 
+host='localhost'
+port='14888'
+user='admin'
+pswd='password'
+
 try:
     secret=sys.argv[1]
 except IndexError:
     print 'Oops, something was wrong!'
     sys.exit(1)
-
-host='localhost'
-port='14888'
-user='admin'
-pswd='password'
 
 b=BTSync(host,port,user,pswd)
 
