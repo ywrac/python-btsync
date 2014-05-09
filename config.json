@@ -2,6 +2,8 @@
     "host" : "localhost",
     "port" : "14888",
     "user" : "admin",
-    "pswd" : "password"
+    "pswd" : "password",    
+
+    "prefix" : "/BTSync"
 }
 

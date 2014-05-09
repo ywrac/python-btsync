@@ -1,12 +1,8 @@
 #!/usr/bin/env python
-
-import sys
 from btsync import BTSync
+from config import host,port,user,pswd
+import sys
 
-host='localhost'
-port='14888'
-user='admin'
-pswd='password'
 
 try:
     secret=sys.argv[1]

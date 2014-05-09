@@ -1,12 +1,7 @@
 from btsync import BTSync
-import json, sys
+from config import host, port, user, pswd
+import sys
 
-prefs = json.load(open(config.json))
-
-host = prefs['host']
-port = prefs['port']
-user = prefs['user']
-pswd = prefs['pswd']
 
 secrets=sys.argv[1]
 

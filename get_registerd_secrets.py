@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 
 from btsync import BTSync
-
-host='localhost'
-port='14888'
-user='admin'
-pswd='password'
+from config import host,port,user,pswd
 
 b=BTSync(host,port,user,pswd)
 
