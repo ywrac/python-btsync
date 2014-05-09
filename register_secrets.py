@@ -13,5 +13,5 @@ secrets_file=sys.argv[1]
 
 b=BTSync(host,port,user,pswd,prefix)
 
-for secretWithN in open('secrets_file','r'):
-    b.register_secret(secretWithN.strip())
+for secretWithN in open(secrets_file,'r'):
+    print b.register_secret(secretWithN.strip())
