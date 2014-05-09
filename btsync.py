@@ -84,7 +84,7 @@ class BTSync(object):
         selective_sync (optional) - specify sync mode, selective - 1, all files
                                     (default) - 0
         """
-        params = {'method': 'add_folder', 'secret': self.get_secrets()['read_write'], 'dir': path, 'selective_sync': '1'}
+        params = {'method': 'add_folder', 'secret': self.get_secrets()['read_write'], 'dir': path}
         if selective_sync is not None:
             params['selective_sync'] = selective_sync
         if secret is not None:
