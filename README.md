@@ -1,4 +1,4 @@
-<p style='text-colr:red'>This is OBSOLETE, switch to https://github.com/ywrac/btsync-api-python</p>
+# This is OBSOLETE, switch to https://github.com/ywrac/btsync-api-python
 
 # python-btsync
 
