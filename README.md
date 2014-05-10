@@ -1,3 +1,5 @@
+# This is OBSOLETE, switch to https://github.com/ywrac/btsync-api-python
+
 # python-btsync
 
 BTSync APIをPythonから利用することができます。
@@ -40,7 +42,7 @@ $ python setup.py install
 すべてのメソッドが実装されているわけだはありません。
 しかし`request()`メソッドを介して任意のメソッドを実行することができます。
 
-At this time, not all API calls are implemented. However, you can still 
+At this time, not all API calls are implemented. However, you can still
 make any API call manually using the `request()` method like so:
 
 ```python
